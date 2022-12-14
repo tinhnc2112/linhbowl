@@ -1,0 +1,496 @@
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@200;300;400&family=Montserrat:wght@200;400;500&display=swap');
+@font-face {
+    font-family: 'Journey to Thailand Light';
+    src: url("../webfonts/Journey to Thailand Light.ttf") format('truetype');;
+}
+  * {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Inconsolata', monospace;
+}
+:root{
+    --primary-corlor: #d4e7f5;
+}
+.d-none{
+    display: none;
+}
+.d-flex{
+    display: flex;
+}
+.flex-1{
+    flex: 1;
+}
+.flex-2{
+    flex: 2;
+}
+.flex-3{
+    flex: 3;
+}
+.flex-4{
+    flex: 4;
+}
+.flex-5{
+    flex: 5;
+}
+.flex-column{
+    flex-direction: column;
+}
+.m-0{
+    margin: 0;
+}
+.m-auto{
+    margin-right: auto;
+    margin-left: auto;
+}
+.mt-3{
+    margin-top: 1.25rem;
+}
+.mr-1{
+    margin-right: .25rem;
+}
+.mr-2{
+    margin-right: .5rem;
+}
+.ml-1{
+    margin-left: .25rem;
+}
+.mr-24{
+    margin-right: 6rem;
+}
+.ml-24{
+    margin-left: 6rem;
+}
+.mb-2{
+    margin-bottom: .5rem;
+}
+.mb-6{
+    margin-bottom: 1.5rem;
+}
+.p-1{
+    padding: .25rem;
+}
+.text-center{
+    text-align: center;
+}
+.text-warning{
+    color: #ffc107;
+}
+.text-danger {
+    color: #dc3545;
+}
+.btn{
+    margin: 0 10px;
+    border: 1px solid transparent;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 0.25rem;
+}
+.btn:hover{
+    opacity: 100%;
+    cursor: pointer;
+}
+.btn-submit{
+    color: #fff;
+    background-color: #6567bc;
+    border-color: #6567bc;
+    opacity: 90%;
+}
+.btn-cancel{
+    color: #fff;
+    background-color: #6c757d;
+    border-color: #6c757d;
+    opacity: 90%;
+}
+.view-menu-btn{
+    color: #fff;
+    border: 1px solid #af3636;
+    border-radius: 20px;
+    background-color: #a62424;
+    padding: 10px 15px;
+    cursor: pointer;
+    opacity: 90%;
+}
+.view-menu-btn:hover {
+    opacity: 100%;
+}
+.small-logo{
+    width: 100px;
+}
+/*header*/
+#head-menu{
+    overflow: hidden;
+}
+#header{
+    position: relative;
+    flex-wrap: wrap;
+    height: 108px;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+.logo{
+    margin-left: 260px;
+}
+#navbar{
+    margin-right: 220px;
+    font-size: 14px;
+}
+.nav-item{
+    list-style: none;
+    padding: 0 12px;
+    font-weight: 600;
+}
+.nav-item a{
+    text-decoration: none;
+    color: #333333;
+}
+.nav-item a:hover {
+    color: #6b6ecb;
+}
+
+li.nav-item.account{
+    width: 20px;
+    height: 20px;
+    border-radius: 30px;
+    background-color: #cde3f3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/*end header*/
+
+/*slide*/
+.slide{
+    height: 52rem;
+    background-image: url("../images/Ricebowl_background.png");
+    position: relative;
+}
+.slide .slogan{
+    font-family: 'Journey to Thailand Light', sans-serif;
+    font-size: 15rem;
+    font-weight: 200;
+    color: #6b6ecb;
+    margin: 0;
+}
+.slide .slogan-info{
+    margin-top: -2.5rem;
+}
+.about .info{
+    margin-top: -1rem;
+}
+.slide .slogan-info, .about .info{
+    max-width: 400px;
+    color: #6c757d;
+}
+.slide-top{
+    /*height: 51rem;*/
+}
+.slide-content-left{
+    margin-left: 200px;
+    margin-top: 110px;
+}
+
+/*end slide*/
+/*about*/
+.about{
+    height: 42rem;
+    background-image: url("../images/about-img.png");
+}
+.about-content{
+    margin-top: 12.5rem;
+    margin-left: 8rem;
+}
+.about-content i{
+    color: #333333;
+    margin-right: .5rem;
+}
+.about-content .title{
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0;
+}
+.about-content .site-name{
+    font-family: 'Journey to Thailand Light', sans-serif;
+    font-size: 6rem;
+    font-weight: 300;
+    color: #6b6ecb;
+    margin: 0;
+}
+
+/*end about*/
+/*best-sellers*/
+.best-sellers{
+    background-color: #6b6ecb;
+    color: #fff;
+    height: 39rem;
+}
+.best-sellers .title{
+    padding: 3rem 0 0;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0;
+}
+.best-sellers .info{
+    max-width: 400px;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 3.5rem;
+}
+.best-sellers-list, .menu-list{
+    justify-content: center;
+}
+.best-sellers-item{
+    /*border: 1px solid #333333;*/
+    width: 20%;
+    padding: 0 8px;
+}
+.best-sellers-name, .product-name{
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+.best-sellers-item img, .menu-item img{
+    width: 230px;
+}
+.best-sellers-item span, .menu-item span{
+    font-family: 'Journey to Thailand Light', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 100;
+}
+.best-sellers-item .price, .menu-item .price{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    font-weight: 600;
+    margin: 10px;
+}
+.best-sellers-item a{
+    color: #fff;
+}
+/*end best-sellers*/
+/*product*/
+.menu{
+    background-color: #faf5f5;
+}
+.menu-list{
+    flex-wrap: wrap;
+}
+.menu-item{
+    background-color: var(--primary-corlor);
+    border: 1px solid transparent;
+    border-radius: 4px;
+    margin: 1.25rem 1.5rem;
+    width: 25%;
+    padding: 16px 8px;
+    color: #333333;
+}
+.menu-item a{
+    color: #333333;
+}
+.menu-item a:hover{
+    color: #6b6ecb;
+}
+.menu-item img{
+    width: 230px;
+}
+/*end product*/
+/*detail product*/
+.food-detail{
+    background-color: aliceblue;
+    padding: 20px 0;
+}
+.food-detail img{
+    width:450px;
+}
+.food-detail .content{
+    margin-right: 160px;
+    max-width: 520px;
+}
+.food-name{
+    font-size: 2rem;
+    font-weight: 600;
+}
+.food-detail .price{
+    margin-top: -1rem;
+}
+.food-description{
+    font-size: 1.1rem;
+}
+.food-detail span{
+    color: #ba4a4a;
+}
+.order-btn{
+    border: 1px solid #6567bc;
+    background-color: #6567bc;
+    border-radius: 0.25rem;
+    padding: 10px 22px;
+    color: #fff;
+    font-size: 1rem;
+}
+.order-btn:hover{
+    cursor: pointer;
+    opacity: 90%;
+}
+/*end detail product*/
+.container{
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+/*footer*/
+.footer-top{
+    justify-content: space-around;
+}
+.footer-top .social{
+    font-size: 2rem;
+    color: #333333;
+}
+.footer-top .footer-link:hover{
+    color: #6b6ecb;
+    cursor: pointer;
+}
+.footer-bottom{
+    justify-content: space-around;
+    background-color: #f4f4f4;
+    padding: 1rem 0;
+    font-size: 14px;
+    font-weight: 600;
+
+}
+.footer-link a{
+    text-decoration: none;
+    color: #000;
+}
+/*end footer*/
+/*form*/
+.form{
+    background-image: url("../images/form_background.png");
+}
+.login_form{
+    max-width: 500px;
+    height: 400px;
+    margin: 0 auto;
+}
+.register_form{
+    max-width: 600px;
+    height: 520px;
+    margin: 0 auto;
+}
+.form_container{
+    border: 1px solid #dee2e6;
+    border-radius: 0.25rem;
+    padding: 1rem;
+    background-color: aliceblue;
+}
+.form-group{
+    margin-bottom: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.form-label{
+    display: flex;
+    flex: 1;
+    align-items: center;
+}
+.form-input{
+    flex: 2;
+}
+.form-control {
+    display: block;
+    width: 100%;
+    height: calc(1.5em + 0.75rem + 2px);
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+.form-control:focus{color: #495057;
+    background-color: #fff;
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgb(0 123 255 / 25%);
+}
+/* modal */
+.modal{
+    justify-content: center;
+    position: fixed;
+    right: 0;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+.modal-container{
+    position: absolute;
+    top: 100px;
+    width: 500px;
+    max-width: calc(100% - 32px);
+    min-height: 150px;
+    background-color:#fff;
+}
+.modal-header{
+    position: relative;
+    background-color:#ced4da;
+}
+.modal-title{
+    font-size: 1.5rem;
+    font-weight: 500;
+
+}
+.modal-close{
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 1rem 1rem;
+
+    text-shadow: 0 1px 0 #fff;
+    background-color: transparent;
+    opacity: .5;
+}
+button.close{
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #000;
+}
+
+@media screen and (max-width: 768px){
+    #header{
+        height: 130px;
+    }
+    #navbar{
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        padding: 0;
+    }
+    .nav-item{
+        padding: 2px 10px;
+    }
+}
+@media screen and (min-width: 768px) and (max-width: 1024px){
+
+
+}
+@media screen and (min-width: 1024px){
+    .navbar-toggler{display: none}
+}

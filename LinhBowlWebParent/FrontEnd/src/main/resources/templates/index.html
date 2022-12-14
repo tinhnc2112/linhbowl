@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: page_head('LinhBowl','none')"/>
+<body>
+<div class="slide">
+    <div th:replace="navigation :: menu"></div>
+    <div class="slide-content">
+        <div class="slide-content-left">
+            <p class="slogan">Rice</p>
+            <p class="slogan-info">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+            <a th:href="@{/products}"><input type="button" class="view-menu-btn" value="VIEW OUR MENU"/></a>
+        </div>
+    </div>
+</div>
+<div class="about">
+    <div class="d-flex">
+        <div class="flex-1"></div>
+        <div class="about-content flex-1">
+            <p class="title">ABOUT</p>
+            <p class="site-name">linh bowl</p>
+            <p class="info">LinhBowl is a leading global online food delivery marketplace, connecting consumers and restaurants through its platforms.
+                With over 680,000 connected partners offering consumers a wide variety of food choice.</p>
+            <a th:href="@{/products}"><input type="button" class="view-menu-btn" value="VIEW OUR MENU"/></a>
+        </div>
+    </div>
+</div>
+<div class="best-sellers text-center">
+    <p class="text-center title">BEST SELLERS</p>
+    <p class="text-center info">LinhBowl is a leading global online food delivery marketplace, connecting consumers and
+        restaurants through its platforms.
+        With over 680,000 connected partners offering consumers a wide variety of food choice.</p>
+    <div class="best-sellers-list d-flex">
+        <div class="best-sellers-item" th:each="product : ${bestSellers}">
+            <img th:src="@{${product.imagePath}}"/>
+            <p class="best-sellers-name">[[${product.name}]]</p>
+            <p class="price"><span>Only</span>&nbsp;$[[${product.price}]]</p>
+            <a th:href="@{'/products/'+${product.name}}">Buy now</a>
+        </div>
+    </div>
+</div>
+<div th:replace="fragments :: footer"></div>
+<script type="text/javascript">
+
+</script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: page_head('About','none')"/>
+<body>
+<div class="slide" style="height: 6.2rem">
+    <div th:replace="navigation :: menu"></div>
+</div>
+<div class="about">
+    <div class="d-flex">
+        <div class="flex-1"></div>
+        <div class="about-content flex-1">
+            <p class="title">ABOUT</p>
+            <p class="site-name">linh bowl</p>
+            <p class="info">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+            <a th:href="@{/products}"><input type="button" class="view-menu-btn" value="VIEW OUR MENU"/></a>
+        </div>
+    </div>
+</div>
+
+<div th:replace="fragments :: footer"></div>
+</body>
+</html>

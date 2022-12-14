@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: page_head('Fobidden','none')"/>
+<body>
+<div style="background-image: url(images/form_background.png)">
+    <div th:replace="navigation :: menu"></div>
+    <div class="text-center" style="height: 397px">
+        <div class="m-3">
+            <h2>Sorry, you don't have permission to access this page.</h2>
+        </div>
+    </div>
+</div>
+<div th:replace="fragments :: footer"></div>
+</body>
+</html>

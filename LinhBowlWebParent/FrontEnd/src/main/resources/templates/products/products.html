@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: page_head('Product','none')"/>
+<body>
+<div class="slide" style="height: 6.2rem">
+    <div th:replace="navigation :: menu"></div>
+</div>
+
+<div class="menu text-center">
+    <div class="menu-list d-flex">
+        <div class="menu-item" th:each="product : ${products}">
+            <img th:src="@{${product.imagePath}}"/>
+            <p class="product-name">[[${product.name}]]</p>
+            <p class="price"><span>Only</span>&nbsp;$[[${product.price}]]</p>
+            <a th:href="@{'/products/'+${product.name}}">Buy now</a>
+        </div>
+    </div>
+</div>
+<div th:replace="fragments :: footer"></div>
+<script type="text/javascript">
+
+</script>
+</body>
+</html>

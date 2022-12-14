@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <head th:replace="fragments :: page_head('Shopping Cart','tag')"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/quantity_control.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/shopping_cart.css}"/>
+</head>
+<body>
+<div class="slide" style="height: 6.2rem">
+    <div th:replace="navigation :: menu"></div>
+</div>
+<div class="content">
+    <div class="d-flex" th:if="!${#lists.isEmpty(cartItems)}">
+        <div class="flex-2">
+            <div class="shopping-cart" th:each="item, index : ${cartItems}">
+                <div class="d-flex cart-item" th:id="'row' + ${index.count}">
+                    <span class="flex-1 index">[[${index.count}]]</span>
+                    <div class="d-flex flex-3 ml-24 image">
+                        <img th:src="@{${item.Product.imagePath}}"/>
+                    </div>
+                    <div class="flex-5 mt-3">
+                        <input type="hidden" id="product-description" th:value="${item.Product.description}"/>
+                        <a class="product-name" th:href="@{'/products/'+${item.Product.name}}">[[${item.Product.name}]]</a>
+                        <p class="price">Price: <span class="dollar">$</span><span class="amount">[[${item.Product.price}]]</span></p>
+                        <p class="food-description"></p>
+                        <div th:replace="cart/quantity_control :: quantity_control(${item.quantity}, ${item.Product.id})">
+                        </div>
+                        <p class="price sub-total-price m-0">Total: <span class="dollar">$</span><span class="amount subtotal" th:id="'subtotal' + ${item.Product.id}">[[${item.subTotal}]]</span>
+                    </div>
+                    <div class="delete d-flex flex-1">
+                        <a th:href="@{'/cart/remove/' + ${item.Product.id}}" th:rowNum="${index.count}" class="far fa-trash-alt link-remove"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="flex-1 total-price">
+            Estimated Total: <br/>
+            <span class="dollar">$</span><span class="amount" id="total">[[${estimatedTotal}]]</span><br/>
+            <button type="button" class="btn-check-out">Check Out</button>
+        </div>
+    </div>
+    <div id="sectionEmpty" th:class="'text-center' + ${#lists.isEmpty(cartItems) ? '' : ' d-none'}">
+        <p>You have not chosen any product yet.</p>
+    </div>
+</div>
+<div th:replace="fragments :: footer"></div>
+<script>
+    contextPath = "[[@{/}]]"
+    var csrfHeaderName = "[[${_csrf.headerName}]]"
+    var csrfHeaderValue = "[[${_csrf.token}]]"
+</script>
+<script type="text/javascript" th:src="@{/js/shopping_cart.js}"></script>
+</body>
+</html>

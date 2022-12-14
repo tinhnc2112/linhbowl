@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: page_head('Product - LinhBowl Admin','none')"/>
+
+<body>
+<div th:replace="navigation :: menu"></div>
+<div class="container-fluid main-content">
+    <div>
+        <h2>Manage Products</h2>
+        <a th:href="@{/products/new}">Create new product</a>
+    </div>
+    <div th:if="${message != null}" class="alert alert-success text-center">
+        [[${message}]]
+    </div>
+    <div>
+        <form th:action="@{/products/page/1}" class="form-inline m-3">
+            Filter:&nbsp;
+            <input th:value="${keword}" type="search" name="keyword" class="form-control" required/>
+            &nbsp;&nbsp;
+            <input class="btn btn-primary less-mt-2" value="Search" type="submit">
+            &nbsp;&nbsp;
+            <input class="btn btn-secondary less-mt-2" value="Clear" type="button" onclick="clearFilter()">
+        </form>
+    </div>
+    <div class="full-details">
+        <table class="table table-bordered table-striped table-hover">
+            <thead class="thead-dark">
+            <tr>
+                <th>No.</th>
+                <th>Product Image</th>
+                <th>Product Name</th>
+                <th>Category</th>
+                <th>Enabled</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="product, index : ${products}">
+                <td class="">[[${index.count}]]</td>
+                <td>
+                    <img th:src="@{${product.imagePath}}" style="width: 80px;height:80px"/>
+                </td>
+                <td>[[${product.name}]]</td>
+                <td>[[${product.category.name}]]</td>
+                <td>
+                    <div th:replace="fragments :: product_status"/>
+                </td>
+                <td>
+                    <div th:replace="fragments :: product_action"/>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="less-details">
+        <div th:each="product, index : ${products}" class="row m-1">
+            <div class="col-4">
+                <img th:src="@{${product.imagePath}}" style="width: 80px;height:80px"/>
+            </div>
+            <div class="col-8 d-flex justify-content-center flex-column">
+                <div>[[${product.name}]]</div>
+                <div class="mt-2 d-flex">
+                    <div th:replace="fragments :: product_status"/>
+                    <div th:replace="fragments :: product_action"/>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="text-center m-1" th:if="${totalItems > 0}">
+        <span>Showing product # [[${startCount}]] to [[${endCount}]] of [[${totalItems}]]</span>
+    </div>
+    <div class="text-center m-1" th:unless="${totalItems > 0}">
+        <span>No products found</span>
+    </div>
+    <div th:if="${totalPage > 1}">
+        <nav>
+            <ul class="pagination justify-content-center">
+                <li th:class="${currentPage > 1 ? 'page-item' : 'page-item disabled'}"><a class="page-link" th:href="@{'/products/page/' + ${currentPage - 1}}">Previous</a></li>
+                <li th:class="${currentPage != i ? 'page-item' : 'page-item active'}" th:each="i : ${#numbers.sequence(1, totalPage)}">
+                    <a class="page-link" th:href="@{'/products/page/' + ${i} + ${keyword != null ? '?keyword=' + keyword : ''}}">[[${i}]]</a>
+                </li>
+                <li th:class="${currentPage < totalPage ? 'page-item' : 'page-item disabled'}"><a class="page-link" th:href="@{'/products/page/' + ${currentPage + 1}}">Next</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="modal fade text-center" id="confirmModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Delete Confirmation</h4>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <span id="confirm-text"></span>
+                </div>
+                <div class="modal-footer">
+                    <a class="btn btn-success bg-green" href="" id="btn-yes">Yes</a>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="detailModal">
+        <div class="modal-dialog">
+            <div class="modal-content"></div>
+        </div>
+    </div>
+</div>
+<div th:replace="fragments :: footer"></div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".link-delete").on("click", function (e) {
+            e.preventDefault();
+            link = $(this);
+            productID = link.attr("productID");
+            $("#btn-yes").attr("href", link.attr("href"))
+            $("#confirm-text").text("Are you sure you want to delete product ID " + productID + "?");
+            $("#confirmModal").modal();
+        });
+        $(".link-detail").on("click", function (e){
+            e.preventDefault();
+            linkDetailURL = $(this).attr("href")
+            $("#detailModal").modal("show").find(".modal-content").load(linkDetailURL)
+        })
+    })
+    function clearFilter(){
+        window.location = "[[@{/products}]]"
+    }
+    function checkUnique(form) {
+        let productID = $("#id").val();
+        let productName = $("#name").val();
+        let csrfValue = $("input[name='_csrf']").val();
+        let url = "[[@{/products/check_unique}]]";
+        let params = {id: productID, name: productName, _csrf: csrfValue};
+        $.post(url, params, function (res) {
+            if (res == "OK") {
+                form.submit();
+            } else if (res == "Duplicate") {
+                showModalDialog("Warning", "There is an another product having the name " + productName);
+            } else {
+                showModalDialog("Error", "Unknown response from server");
+            }
+        }).fail(function () {
+            showModalDialog("Error", "Could not connect to server");
+        })
+        return false;
+    }
+
+    function showModalDialog(title, message) {
+        $("#modalTitle").text(title);
+        $("#modalBody").text(message);
+        $("#modalDialog").modal();
+    }
+</script>
+</body>
+</html>

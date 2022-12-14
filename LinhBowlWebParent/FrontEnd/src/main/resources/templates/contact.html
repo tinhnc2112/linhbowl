@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: page_head('Contact','none')"/>
+<body>
+<div class="slide" style="height: 6.2rem">
+    <div th:replace="navigation :: menu"></div>
+</div>
+<div class="about">
+    <div class="d-flex">
+        <div class="flex-1"></div>
+        <div class="about-content flex-1">
+            <p class="site-name">linh bowl</p>
+            <p class="phone-number"><i class="fas fa-phone-alt"></i>+12 345 678 90</p>
+            <p class="email"><i class="fas fa-envelope"></i>linkbowl@gmail.com</p>
+            <p class="address"><i class="fas fa-map-marker-alt"></i>123 Ha Noi, Viet Nam</p>
+        </div>
+    </div>
+</div>
+
+<div th:replace="fragments :: footer"></div>
+</body>
+</html>

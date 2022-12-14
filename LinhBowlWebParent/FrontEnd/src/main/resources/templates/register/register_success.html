@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>LinhBowl</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/font/all.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+</head>
+<body>
+<div th:replace="navigation :: menu"></div>
+<div class="container">
+    <div class="text-center">
+        <h2>Customer Registration</h2>
+        <h3>You have registered successfully as a customer</h3>
+        <p>Please check your email to verify your account</p>
+        <a th:href="@{/login}">Login</a>
+    </div>
+
+</div>
+<div th:replace="fragments :: footer"></div>
+<script type="text/javascript">
+
+</script>
+</body>
+</html>

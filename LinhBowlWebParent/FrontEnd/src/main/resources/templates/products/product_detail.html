@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <head th:replace="fragments :: page_head('Product Detail','tag')"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/quantity_control.css}"/>
+    <script type="text/javascript" th:src="@{/webjars/jquery/3.4.1/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/quantity_control.js}"></script>
+</head>
+<body>
+<div class="slide" style="height: 6.2rem">
+    <div th:replace="navigation :: menu"></div>
+</div>
+
+<div class="food-detail d-flex" th:object="${product}">
+    <div class="flex-1 ml-24">
+        <img th:src="@{${product.imagePath}}"/>
+    </div>
+    <div class="content flex-1 mt-3">
+        <input type="hidden" id="product-description" th:value="${product.description}"/>
+        <p class="food-name">[[${product.name}]]</p>
+        <p class="price">Price: <span>$[[${product.price}]]</span></p>
+        <p class="food-description"></p>
+        <div th:replace="cart/quantity_control :: quantity_control(1,${product.id})">
+        </div>
+        <div class="message mb-6">
+            <span class="message-warning alert alert-warning text-center"></span>
+            <span class="message-success alert alert-success text-center"></span>
+        </div>
+        <button class="order-btn" id="btnAddToCart">Add to cart</button>
+
+    </div>
+</div>
+<div th:replace="fragments :: footer"></div>
+<script type="text/javascript">
+    contextPath = "[[@{/}]]"
+    productId = "[[${product.id}]]"
+    csrfHeaderName = "[[${_csrf.headerName}]]"
+    csrfHeaderValue = "[[${_csrf.token}]]"
+    $(document).ready(function () {
+        productDes = $("#product-description").val()
+        productDesText = remove_tags(productDes)
+        document.querySelector(".food-description").innerHTML = productDesText
+    })
+
+    function remove_tags(html) {
+        let tmp = document.createElement("DIV");
+        tmp.innerHTML = html;
+        return tmp.textContent || tmp.innerText || "";
+    }
+</script>
+<script type="text/javascript" th:src="@{/js/add_to_cart.js}"></script>
+</body>
+</html>
